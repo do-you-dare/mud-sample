@@ -21,7 +21,7 @@
 namespace mud
 {
     // Exported types
-    template <>  Type& cls<ShapeType>();
+    template <> EXAMPLE_EXPORT Type& type<ShapeType>();
     
-    template <>  Type& cls<MyObject>();
+    template <> EXAMPLE_EXPORT Type& type<MyObject>();
 }

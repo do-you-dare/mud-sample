@@ -1,10 +1,12 @@
 
 #include <example/Generated/Module.h>
 
+#ifdef EXAMPLE_REFLECT
 #include <example/Generated/Convert.h>
 
 #define EXAMPLE_REFLECTION_IMPL
 #include <example/Generated/Meta.h>
+#endif
 
 	example::example()
 		: Module("example")
@@ -18,15 +20,15 @@
         mudedit::module();
         mudgen::module();
 
+#ifdef EXAMPLE_REFLECT
         // setup reflection meta data
-#ifdef EXAMPLE_REFLECTION_IMPL
 		example_meta(*this);
 #endif
 	}
 
 #ifdef _EXAMPLE_MODULE
 extern "C"
- Module& getModule()
+EXAMPLE_EXPORT Module& getModule()
 {
 	return example::module();
 }

@@ -12,6 +12,11 @@
 #include <edit/Generated/Forward.h>
 #include <gen/Generated/Forward.h>
 
+#if defined EXAMPLE_LIB
+#define EXAMPLE_EXPORT MUD_EXPORT
+#else
+#define EXAMPLE_EXPORT MUD_IMPORT
+#endif
 
 
     enum class ShapeType : int;

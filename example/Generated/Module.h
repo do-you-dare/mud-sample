@@ -16,7 +16,7 @@
 
 #include <example/example.h>
 
-	class  example : public Module
+	class EXAMPLE_EXPORT example : public Module
 	{
 	private:
 		example();
@@ -27,5 +27,5 @@
 
 #ifdef _EXAMPLE_MODULE
 extern "C"
- Module& getModule();
+EXAMPLE_EXPORT Module& getModule();
 #endif
