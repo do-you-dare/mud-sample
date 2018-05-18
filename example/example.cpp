@@ -53,7 +53,7 @@ void ex_00_tutorial_pump(Shell& app, Widget& parent, Dockbar& dockbar)
 	ui::orbit_controller(viewer);
 
 	Widget& lower_side = ui::layout_span(left_side, 0.4f);
-	multi_inspector(lower_side, cls<MyObject>(), objects, selected);
+	multi_inspector(lower_side, type<MyObject>(), objects, selected);
 
 	Gnode& groot = viewer.m_scene.m_graph.begin();
 	gfx::radiance(groot, "radiance/tiber_1_1k.hdr", BackgroundMode::None);
