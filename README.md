@@ -1,5 +1,7 @@
 # mud-sample
 
+[![Build Status](https://travis-ci.org/hugoam/mud-sample.svg?branch=master)](https://travis-ci.org/hugoam/mud-sample)
+
 [mud](https://github.com/hugoam/mud) sample module
 
 build instructions (example with gcc on linux) :  
