@@ -63,7 +63,7 @@ void ex_00_tutorial_pump(Shell& app, Widget& parent, Dockbar& dockbar)
 	{
 		MyObject& myobject = val<MyObject>(object);
 		Gnode& node = gfx::node(groot, &myobject, myobject.m_position);
-		Material& material = colour_material(*app.m_gfx_system, myobject.m_colour);
+		Material& material = colour_material(app.m_gfx_system, myobject.m_colour);
 		if(myobject.m_shape == ShapeType::Sphere)
 			gfx::shape(node, Sphere(), Symbol(Colour::None, myobject.m_colour), 0U, &material);
 		if(myobject.m_shape == ShapeType::Cube)
