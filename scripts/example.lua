@@ -7,5 +7,5 @@ project "example"
     
     uses_mud()
     uses_mud_gfx()
-    mud_binary("example")
+    mud_shell("example")
 
