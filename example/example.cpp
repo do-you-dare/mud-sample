@@ -1,7 +1,7 @@
 #include <mud/mud.h>
 #include <example/example.h>
-#include <example/Generated/Module.h>
-#include <math/Generated/Convert.h>
+#include <meta/example/Module.h>
+#include <meta/math/Convert.h>
 
 MyObject::MyObject(ShapeType shape, Colour colour)
 	: m_shape(shape)
@@ -27,18 +27,18 @@ void bar(MyObject& object)
 Material& colour_material(GfxSystem& gfx_system, Colour& colour)
 {
 	uint32_t abgr = to_abgr(colour);
-	static std::map<uint32_t, Material> materials;
+	static std::map<uint32_t, Material*> materials;
 	if(materials.find(abgr) == materials.end())
 	{
-		materials[abgr] = { to_string(colour).c_str(), "pbr/pbr" };
-		PbrMaterialBlock& pbr = materials[abgr].m_pbr_block;
+		materials[abgr] = &gfx_system.fetch_material(to_string(colour).c_str(), "pbr/pbr", false);
+		PbrMaterialBlock& pbr = materials[abgr]->m_pbr_block;
 		pbr.m_enabled = true;
 		pbr.m_albedo.m_value = colour;
 		pbr.m_roughness.m_value = 0.f;
 		pbr.m_metallic.m_value = 0.4f;
 		pbr.m_roughness.m_value = 0.35f;
 	}
-	return materials[abgr];
+	return *materials[abgr];
 }
 
 void ex_00_tutorial_pump(Shell& app, Widget& parent, Dockbar& dockbar)
@@ -96,8 +96,8 @@ void pump(Shell& app)
 
 int main(int argc, char *argv[])
 {
-	example::module();
-	Shell app(cstrarray(MUD_RESOURCE_PATH), argc, argv);
+	example::m();
+	Shell app(carray<cstring, 1>{ MUD_RESOURCE_PATH }, argc, argv);
 	app.run(pump);
 }
 #endif

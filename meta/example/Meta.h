@@ -2,17 +2,18 @@
 
 #pragma once
 
-#include <example/Generated/Module.h>
+#ifndef MUD_MODULES
+#include <meta/example/Module.h>
 
 #include <obj/Any.h>
-#include <obj/Reflect/MetaDecl.h>
-#include <obj/System/System.h>
+#include <obj/Vector.h>
+#include <refl/MetaDecl.h>
+#include <refl/Module.h>
+#endif
 
 namespace mud
 {
-    
-#ifdef EXAMPLE_REFLECTION_IMPL
-    void example_meta(Module& module)
+    void example_meta(Module& m)
     {   
     // Base Types
     
@@ -75,20 +76,20 @@ namespace mud
     
 
     
-        module.m_types.push_back(&type<MyObject>());
-        module.m_types.push_back(&type<ShapeType>());
+        m.m_types.push_back(&type<MyObject>());
+        m.m_types.push_back(&type<ShapeType>());
     
         {
             auto func = [](array<Var> args, Var& result) { UNUSED(result);  ::foo(val<int>(args[0])); };
             std::vector<Param> params = { { "arg", var(int()) } };
-            module.m_functions.push_back({ &namspc({}), "foo", function_id<void(*)(int)>(&::foo), func, params, Var() });
+            static Function f = { &namspc({}), "foo", function_id<void(*)(int)>(&::foo), func, params, Var() };
+            m.m_functions.push_back(&f);
         }
         {
             auto func = [](array<Var> args, Var& result) { UNUSED(result);  ::bar(val<MyObject>(args[0])); };
             std::vector<Param> params = { { "object", Ref(type<MyObject>()) } };
-            module.m_functions.push_back({ &namspc({}), "bar", function_id<void(*)(MyObject&)>(&::bar), func, params, Var() });
+            static Function f = { &namspc({}), "bar", function_id<void(*)(MyObject&)>(&::bar), func, params, Var() };
+            m.m_functions.push_back(&f);
         }
     }
-#endif
-
 }

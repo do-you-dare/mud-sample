@@ -3,9 +3,11 @@
 project "example"
     kind "ConsoleApp"
 
-    mud_module("example", PROJECT_DIR, "example", "EXAMPLE")
+    example = mud_module(nil, "example", PROJECT_DIR, "example", nil, nil, nil, mud.all)
+    example.decl(example, false)
+        
+    mud_refl(example)
+    example.refl.decl(example.refl, false)
     
-    uses_mud()
-    uses_mud_gfx()
     mud_shell("example")
 

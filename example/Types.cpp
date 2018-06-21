@@ -1,8 +1,15 @@
 
 
-#include <example/Generated/Types.h>
-#include <example/Generated/Module.h>
-#include <obj/Proto.h>
+#include <infra/Cpp20.h>
+
+#ifdef MUD_MODULES
+module .example;
+#else
+#include <example/Types.h>
+#include <example/Api.h>
+#include <obj/Vector.h>
+//#include <proto/Proto.h>
+#endif
 
 namespace mud
 {
