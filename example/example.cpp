@@ -62,7 +62,7 @@ void ex_00_tutorial_pump(Shell& app, Widget& parent, Dockbar& dockbar)
 	for(Var& object : objects)
 	{
 		MyObject& myobject = val<MyObject>(object);
-		Gnode& node = gfx::node(groot, &myobject, myobject.m_position);
+		Gnode& node = gfx::node(groot, Ref(&myobject), myobject.m_position);
 		Material& material = colour_material(app.m_gfx_system, myobject.m_colour);
 		if(myobject.m_shape == ShapeType::Sphere)
 			gfx::shape(node, Sphere(), Symbol(Colour::None, myobject.m_colour), 0U, &material);
@@ -74,14 +74,14 @@ void ex_00_tutorial_pump(Shell& app, Widget& parent, Dockbar& dockbar)
 	{
 		MyObject& myobject = val<MyObject>(objects[selected]);
 		Widget& right_side = ui::layout_span(board, 0.2f);
-		inspector(right_side, &myobject);
+		inspector(right_side, Ref(&myobject));
 
 		Transform transform;
 		transform.m_position = myobject.m_position;
 		//app.m_editor.m_current_viewer = &viewer;
 		//app.m_editor.m_selection = { objects[selected] };
 		app.m_editor.set_tool(app.m_editor.m_translate_tool, viewer);
-		app.m_editor.m_translate_tool.process(viewer, { &transform });
+		app.m_editor.m_translate_tool.process(viewer, { Ref(&transform) });
 
 		myobject.m_position = transform.m_position;
 	}

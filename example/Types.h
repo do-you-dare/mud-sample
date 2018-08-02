@@ -25,7 +25,8 @@
 #include <gfx-obj/Types.h>
 #include <gfx-pbr/Types.h>
 #include <gfx-gltf/Types.h>
-#include <edit/Types.h>
+#include <gfx-ui/Types.h>
+#include <tool/Types.h>
 #include <procgen-gfx/Types.h>
 #endif
 

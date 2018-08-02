@@ -21,7 +21,8 @@
 #include <gfx-obj/Forward.h>
 #include <gfx-pbr/Forward.h>
 #include <gfx-gltf/Forward.h>
-#include <edit/Forward.h>
+#include <gfx-ui/Forward.h>
+#include <tool/Forward.h>
 #include <procgen-gfx/Forward.h>
 
 #ifndef EXAMPLE_EXPORT

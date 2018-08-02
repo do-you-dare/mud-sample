@@ -33,7 +33,8 @@ module .example;
         mud_gfx_obj::m();
         mud_gfx_pbr::m();
         mud_gfx_gltf::m();
-        mud_edit::m();
+		mud_gfx_ui::m();
+        mud_tool::m();
         mud_procgen_gfx::m();
 
         // setup reflection meta data
